@@ -132,6 +132,27 @@ EOF
 
 	arch-chroot /mnt pacman --noconfirm -Syu
 
+	cat <<EOF > /mnt/home/$IAM/yaourt.sh
+cd
+
+git clone https://aur.archlinux.org/package-query.git
+cd package-query
+makepkg -si --noconfirm
+cd ..
+
+git clone https://aur.archlinux.org/yaourt.git
+cd yaourt
+makepkg -si --noconfirm
+cd ..
+
+rm -rf package-query yaourt
+EOF
+
+	chmod 555 /mnt/home/$IAM/yaourt.sh
+	arch-chroot /mnt sudo -u $IAM bash /home/$IAM/yaourt.sh
+
+	arch-chroot /mnt sudo -u $IAM yaourt -Syua --noconfirm
+
 	echo Install OK, You use arch btw
 }
 
