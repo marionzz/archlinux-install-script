@@ -101,7 +101,7 @@ EOF
 	arch-chroot /mnt pacman --noconfirm -Syy xf86-video-nouveau
 	arch-chroot /mnt pacman --noconfirm -Syy xf86-video-vesa
 
-	arch-chroot /mnt pacman --noconfirm -Syy ttf-{bitstream-vera,liberation,freefont,dejavu} freetype2
+	arch-chroot /mnt pacman --noconfirm -Syy ttf-{bitstream-vera,liberation,dejavu} freetype2
 
 	arch-chroot /mnt pacman --noconfirm -Syy gimp gimp-help-fr python-pyqt5
 
