@@ -65,6 +65,9 @@ EOF
 
 	arch-chroot /mnt hwclock --systohc --utc
 
+	pacstrap /mnt mkinitcpio
+	pacstrap /mnt linux
+
 	arch-chroot /mnt mkinitcpio -p linux
 
 	if [ -d /sys/firmware/efi ]; then
