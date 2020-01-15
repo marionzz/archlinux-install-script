@@ -94,7 +94,7 @@ EOF
 
 	arch-chroot /mnt pacman --noconfirm -Syy xorg-{server,xinit,apps} xf86-input-{mouse,keyboard} xdg-user-dirs
 
-	arch-chroot /mnt pacman --noconfirm -Syy xorg-{server,xinit,apps} xf86-input-{mouse,keyboard} xdg-user-dirs
+	arch-chroot /mnt pacman --noconfirm -Syy xorg-{server,xinit,apps} xf86-input-libinput xdg-user-dirs
 
 	#touchpad
 	arch-chroot /mnt pacman --noconfirm -Syy xf86-input-libinput
