@@ -3,6 +3,7 @@
 _() {
 	set -xeuo pipefail
 	loadkeys fr
+	pacman -Syy
 
 	SWAP="6GiB"
 	if [ -d /sys/firmware/efi ]; then
