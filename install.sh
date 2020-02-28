@@ -93,7 +93,7 @@ EOF
 
 	arch-chroot /mnt pacman --noconfirm -Syy gst-plugins-{base,good,bad,ugly} gst-libav
 
-	arch-chroot /mnt pacman --noconfirm -Syy xorg-{server,xinit,apps} xf86-input-{mouse,keyboard} xdg-user-dirs
+	arch-chroot /mnt pacman --noconfirm -Syy xorg-{server,xinit,apps} xdg-user-dirs
 
 	arch-chroot /mnt pacman --noconfirm -Syy xorg-{server,xinit,apps} xf86-input-libinput xdg-user-dirs
 
