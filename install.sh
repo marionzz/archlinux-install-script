@@ -39,7 +39,7 @@ _() {
 	echo 'Server = http://archlinux.mirrors.ovh.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
 	pacstrap /mnt base base-devel pacman-contrib
-	pacstrap /mnt git zip unzip p7zip vim mc alsa-utils syslog-ng mtools dosfstools lsb-release ntfs-3g exfat-utils bash-completion zsh sudo tmux htop iftop nmap curl wget autossh
+	pacstrap /mnt git zip unzip p7zip vim mc alsa-utils syslog-ng mtools dosfstools lsb-release bash-completion zsh sudo tmux htop iftop nmap curl wget autossh
 
 	genfstab -U -p /mnt >> /mnt/etc/fstab
 
@@ -116,6 +116,8 @@ EOF
 	arch-chroot /mnt pacman --noconfirm -Syy libreoffice-still hunspell hunspell-fr
 
 	arch-chroot /mnt pacman --noconfirm -Syy firefox firefox-developer-edition chromium
+
+	arch-chroot /mnt pacman --noconfirm -Syy ntfs-3g exfat-utils
 
 	curl -k https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc > /mnt/etc/skel/.zshrc
 
