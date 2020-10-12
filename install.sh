@@ -36,10 +36,10 @@ _() {
 		mount /dev/sda1 /mnt/boot
 	fi
 
-	echo 'Server = http://archlinux.mirrors.ovh.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+	echo 'Server = http://mir.archlinux.fr/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
 	pacstrap /mnt base base-devel pacman-contrib
-	pacstrap /mnt git zip unzip p7zip vim mc alsa-utils syslog-ng mtools dosfstools lsb-release bash-completion zsh sudo tmux htop iftop nmap curl wget autossh
+	pacstrap /mnt git zip unzip p7zip vim mc alsa-utils syslog-ng mtools lsb-release bash-completion zsh sudo tmux htop iftop nmap curl wget autossh
 
 	genfstab -U -p /mnt >> /mnt/etc/fstab
 
@@ -117,7 +117,7 @@ EOF
 
 	arch-chroot /mnt pacman --noconfirm -Syy firefox firefox-developer-edition chromium
 
-	arch-chroot /mnt pacman --noconfirm -Syy ntfs-3g exfat-utils
+	arch-chroot /mnt pacman --noconfirm -Syy ntfs-3g exfat-utils dosfstools
 
 	curl -k https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc > /mnt/etc/skel/.zshrc
 
@@ -136,7 +136,14 @@ EOF
 	#arch-chroot /mnt localectl set-x11-keymap fr
 	arch-chroot /mnt systemctl enable sddm
 
-	arch-chroot /mnt pacman --noconfirm -Syu
+	arch-chroot /mnt pacman --noconfirm -Syyu
+
+	arch-chroot /mnt ntpdate -4 pool.ntp.org
+
+	hwclock --systohc
+
+	arch-chroot /mnt pacman --noconfirm -Syu openssh
+	arch-chroot /mnt systemctl enable sshd
 
 	cat <<EOF > /mnt/home/$IAM/yaourt.sh
 cd
@@ -159,7 +166,7 @@ EOF
 
 	arch-chroot /mnt sudo -u $IAM yaourt -Syua --noconfirm
 
-	echo Install OK, You use arch btw
+	reboot
 }
 
 _ "$0" "$@"
